@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ulubione kolory</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.js"></script>
+</head>
+<body>
+    <p id="paragraph"></p>
+    <form>
+        <label for="input">Wpisz kolor:</label>
+        <input type="text" id="input" name="input" onfocus="this.value=''">
+    </form>
+    <div style="display: flex">
+        <button id="add">Dodaj kolor</button>
+        <button id="remove">Usuń kolor</button>
+    </div>
+    <script>
+        function addColor(value) {
+            return {
+                type: "ADD",
+                color: value
+            };
+        }
+        function removeColor(value) {
+            return {
+                type: "REMOVE",
+                color: value
+            };
+        }
+        function favoriteColors(state, action) {
+            if (state === undefined) {
+                state = [];
+            }
+            if (action.type === "ADD") {
+                return state.concat(action.color);
+            } else if (action.type === "REMOVE") {
+                return state.filter(function(item) {
+                    return item !== action.color;
+                });
+            } else {
+                return state;
+            }
+        }
+        var paragraph = document.getElementById("paragraph");
+        var input = document.getElementById("input");
+        var addBtn = document.getElementById("add");
+        var removeBtn = document.getElementById("remove");
+        var store = Redux.createStore(favoriteColors);
+        store.subscribe(render);
+        function render() {
+            paragraph.innerHTML = store.getState();
+        }
+        addBtn.addEventListener("click", function () {
+            store.dispatch(addColor(input.value));
+        });
+        removeBtn.addEventListener("click", function () {
+            store.dispatch(removeColor(input.value));
+        });
+    </script>
+</body>
+</html>
