@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux"
-import counter from "./reducer";
+import reducer from "./reducers/reducer";
 import App from "./App";
-import "./index.css";
+import "./styles.css";
 
 var destination = document.querySelector("#container");
 
 //Magazyn
-var store = createStore(counter);
+var store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
