@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Counter from "./components/Counter";
 
 //Powiązanie stanu z właściwością komponentu
-function mapStateToProps(state) {
+const mapStateToProps = state => {
     return {
         countValue: state.counter.count,
         colorType: state.painter.color
@@ -10,35 +10,37 @@ function mapStateToProps(state) {
 }
 
 //Akcje
-var increaseAction = { type: "increase" };
-var decreaseAction = { type: "decrease" };
-var paintRedAction = { type: "red" };
-var paintOrangeAction = { type: "orange" };
-var paintGreenAction = { type: "green" };
+const actions = {
+    increaseAction: { type: "increase" },
+    decreaseAction: { type: "decrease" },
+    paintRedAction: { type: "red" },
+    paintOrangeAction: { type: "orange" },
+    paintGreenAction: { type: "green" }
+};
 
 //Powiązanie akcji z właściwością komponentu
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
     return {
         increaseCount: function () {
-            return dispatch(increaseAction);
+            return dispatch(actions.increaseAction);
         },
         decreaseCount: function () {
-            return dispatch(decreaseAction);
+            return dispatch(actions.decreaseAction);
         },
         paintRed: function () {
-            return dispatch(paintRedAction);
+            return dispatch(actions.paintRedAction);
         },
         paintOrange: function () {
-            return dispatch(paintOrangeAction);
+            return dispatch(actions.paintOrangeAction);
         },
         paintGreen: function () {
-            return dispatch(paintGreenAction);
+            return dispatch(actions.paintGreenAction);
         }
     };
 }
 
 //Komponent wyższego rzędu
-var connectedComponent = connect(
+const connectedComponent = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Counter);

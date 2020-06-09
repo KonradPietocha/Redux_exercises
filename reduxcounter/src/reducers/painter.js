@@ -1,5 +1,5 @@
 //Reduktor
-function painter(state, action) {
+const painter = (state, action) => {
     if (state === undefined) {
         return { color: "red" };
     }

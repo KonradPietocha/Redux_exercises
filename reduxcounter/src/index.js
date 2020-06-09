@@ -6,10 +6,10 @@ import reducer from "./reducers/reducer";
 import App from "./App";
 import "./styles.css";
 
-var destination = document.querySelector("#container");
+const destination = document.querySelector("#root");
 
 //Magazyn
-var store = createStore(reducer);
+const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>

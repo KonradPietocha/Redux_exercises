@@ -17,6 +17,7 @@ const style = {
 
 class Counter extends Component {
     render() {
+        
         return (
             <div className="container" style={style.flex}>
                 <div>

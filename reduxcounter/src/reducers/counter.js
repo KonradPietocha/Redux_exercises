@@ -1,9 +1,9 @@
 //Reduktor
-function counter(state, action) {
+const counter = (state, action) => {
     if (state === undefined) {
         return { count: 0 };
     }
-    var count = state.count;
+    let count = state.count;
     switch (action.type) {
         case "increase":
             return { count: count + 1 };
